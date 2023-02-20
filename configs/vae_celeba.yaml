@@ -1,0 +1,36 @@
+name: 'VAEceleba'
+train_step: True
+
+model_params:
+  nc: 3
+  ngf: 128
+  ndf: 128
+  latent_dim: 128
+
+data_params:
+  name: "celeba"
+  data_path: "./datasets"
+  train_batch_size: 128
+  val_batch_size:  128
+  num_workers: 10
+  pin_memory: True
+  patch_size: [128, 128]
+  download: False
+
+exp_params:
+  LR: 0.0001
+  weight_decay: 0.0
+  scheduler_gamma: null
+  kld_weight: 1
+  manual_seed: null
+  epochs: 100
+  loss: our  # bce, mse, our
+  sigma2: 0.3
+
+results:
+  root: "./results"
+  logs: "tensorboard"
+  sample: "sample"
+  reconstruction: "reconstruction"
+  checkpoint: "checkpoint"
+  resume_path: "./results/checkpoint/model_epoch???.pth"

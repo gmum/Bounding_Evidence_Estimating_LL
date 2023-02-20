@@ -1,0 +1,35 @@
+name: 'VAEsvhn'
+train_step: True
+
+model_params:
+  image_channels: 3
+  hidden_size: 1024  # hidden dimension
+  latent_dim: 32  # latent vector dimension
+
+data_params:
+  name: "svhn"
+  data_path: "./datasets/SVHN"
+  train_batch_size: 64
+  val_batch_size:  100
+  num_workers: 4
+  pin_memory: True
+  patch_size: [64, 64]
+  download: False
+
+exp_params:
+  LR: 0.001
+  weight_decay: 0.0
+  scheduler_gamma: null
+  kld_weight: 0.8
+  manual_seed: null
+  epochs: 50
+  loss: our  # bce, mse, our
+  sigma2: 0.3
+
+results:
+  root: "./results"
+  logs: "tensorboard"
+  sample: "sample"
+  reconstruction: "reconstruction"
+  checkpoint: "checkpoint"
+  resume_path: "./results/checkpoint/model_epoch???.pth"
